@@ -1,0 +1,28 @@
+# EditorConfig is awesome: https://EditorConfig.org
+
+#表示是最顶层的配置文件，发现设为true时，才会停止查找.editorconfig文件
+root=true
+
+
+#对于所有的文件 始终 缩进风格，可选配置有 tab 和 space
+[*]
+indent_style = space
+
+
+#缩进大小，可设定为 1-8 的数字
+indent_size = 4
+
+#编码格式，通常都是选 utf-8
+charset = utf-8
+
+#去除多余的空格
+
+
+#在尾部插入一行,不建议用
+insert_final_newline = false
+
+#换行符，可选配置有 lf ，cr ，crlf
+end_of_line = lf
+
+[*.md]
+trim_trailing_whitespace = false
