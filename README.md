@@ -335,4 +335,36 @@ module.exports = {
     ],
 }
 ```
+
+- 2.0、配置lint-staged，主要是对代码在git 提交前进行eslint,stylelint 的校验，这里推荐用这两个库：husky lint-staged
+```
+
+npm install husky lint-staged -D
+```
+然后再package.json 文件中配置：
+
+```
+{
+ 
+  // 其他配置...
+
+  
+     "husky": {
+        "hooks": {
+            "pre-commit": "lint-staged"
+        }
+    },
+    "lint-staged": {
+        "*.{ts,tsx,js}": [
+            "eslint --config .eslintrc.js"
+        ],
+        "*.{css,less,scss}": [
+            "stylelint --config .stylelintrc.js"
+        ],
+        "*.{ts,tsx,js,json,html,yml,css,less,scss,md}": [
+            "prettier --write"
+        ]
+    },
+}
+```
    
