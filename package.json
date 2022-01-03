@@ -24,8 +24,8 @@
         "*.{css,less,scss}": [
             "stylelint --config .stylelintrc.js"
         ],
-        "*.{ts,tsx,js,json,html,yml,css,less,scss,md}": [
-            "prettier --write"
+        "src/**/*.{ts,tsx,js,json,html,yml,css,less,scss,md}": [
+            "prettier --write \"src/**/*.{js,json,tsx,ts,css,less,scss,vue,html,md}\""
         ]
     },
     "devDependencies": {
