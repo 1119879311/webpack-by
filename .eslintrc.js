@@ -51,5 +51,18 @@ module.exports = {
                 js: 'never',
             },
         ],
+        'import/no-extraneous-dependencies': OFF,
+        // 'import/no-extraneous-dependencies': [
+        //     'error',
+        //     { devDependencies: ['**/*.test.js', '**/*.spec.js'] },
+        // ],
+        '@typescript-eslint/no-useless-constructor': ERROR,
+        '@typescript-eslint/no-empty-function': WARN,
+        '@typescript-eslint/no-var-requires': OFF,
+        '@typescript-eslint/explicit-function-return-type': OFF,
+        '@typescript-eslint/explicit-module-boundary-types': OFF,
+        '@typescript-eslint/no-explicit-any': OFF,
+        '@typescript-eslint/no-use-before-define': ERROR,
+        '@typescript-eslint/no-unused-vars': WARN,
     },
 };
