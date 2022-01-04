@@ -1,5 +1,4 @@
-/dist
-/node_modules/**
-**/*.svg
+/node_modules
 /build
-package.json
+/dist
+/scripts
