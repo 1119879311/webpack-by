@@ -36,6 +36,7 @@ module.exports = {
         'unit-no-unknown': [true, { ignoreUnits: ['rpx'] }],
     },
     ignoreFiles: [
+        '/dist/**/*',
         'node_modules/**/*',
         'build/**/*',
         '**/*.js',

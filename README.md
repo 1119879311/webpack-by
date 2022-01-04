@@ -368,3 +368,115 @@ npm install husky lint-staged -D
 }
 ```
    
+## 2. 开始webpack的配置
+- 2.1、安装依赖
+```
+npm install webpack webpack-cli -D
+
+```
+- 2.2、 在根目录新建目录 srcipts,然后再建立几个文件,结构如下
+```
+scripts/
+    path.js
+    env.js
+    config/
+    webpack.common.js
+    webpack.dev.js
+    webpack.prod.js
+```
+path.js 是就是webpack 配置的以下常用路径，env.js 就是和环境相关处理,config目录下几个就是webpack 的导出主要配置文件,webpack.common.js 是公共配置，webpack.dev.js 是开发的配置，webpack.prod.js 是生产构建配置
+
+- 2.3、webpack的配置之 input、output
+  input,output 是wbpack的核心配置项，具体参考[entry-context](https://webpack.docschina.org/configuration/entry-context)
+  
+  在path.js 添加如下代码：
+
+```
+const path = require('path');
+const fs = require('fs');
+
+// 获取节点执行的文件的工作目录
+const PROJECT_ROOT = fs.realpathSync(process.cwd());
+
+const resolveApp = (relativePath) => {
+    return path.resolve(PROJECT_ROOT, relativePath);
+};
+
+module.exports = {
+    //出口目录
+    appBuild: resolveApp('dist'),
+
+    //公共资源目录
+    appPublic: resolveApp('appPublic'),
+
+    //入口目录
+    appIndex: resolveApp('src/index'),
+
+    //工作目录
+    appRoot,
+
+    resolveApp,
+};
+
+```
+
+  在webpack.common.js 添加如下
+
+```
+
+const { appIndex, appBuild } = require('./path');
+
+
+module.exports =  {
+    //声明构建模式: none,prodution,development
+    mode: 'development',
+
+    // 入口配置
+    entry: {
+        app: appIndex,
+    },
+
+    // 出口配置
+    output: {
+        filename: 'static/js/bundle.js',
+        path: appBuild,
+    },
+};
+
+```
+在 package.json 中添加执行命令
+
+```
+
+{
+    scripts:{
+        webpack:"webpack --config scripts/config/webpack.common.js"
+    }
+}
+
+```
+ 在src/index.js 添加一些js 代码，终端执行npm run webpack ,在项目根目录会生成dist 的打包目录
+
+ - 2.4、 区分开发和生产构建环境,prodution,development
+
+这里使用到几个库，安装依赖
+```
+npm install webpack-merge  cross-env -D
+```
+webpack-merge 是用与wepback配置参数合拼，cross-env 是设置环境变量的
+
+在package.json 添加
+```
+{
+  scripts:{
+        "dev": "cross-env NODE_ENV=development  webpack --config scripts/config/webpack.dev.js"",
+        "build": "cross-env NODE_ENV=production   webpack --config scripts/config/webpack.prod.js"", 
+    }
+
+}
+```
+
+
+
+
+
