@@ -1,3 +1,3 @@
-const a = 1212;
-
-exports.a = a;
+const a = 12;
+document.getElementById('app').innerHTML = 'this is html';
+console.log(a);
