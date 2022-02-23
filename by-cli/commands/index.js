@@ -1,10 +1,12 @@
 const AddCommand = require('./add.command');
-const AddAction = require('../actions/add.action');
+const RunCommand = require('./run.command');
+const { AddAction, RunAction } = require('../actions');
 
 const loadCommand = (program) => {
     new AddCommand(AddAction.create()).load(program);
-    const options = program.opts();
-    console.log('options:', options);
+    new RunCommand(RunAction.create()).load(program);
+
+    // const options = program.opts();
 };
 
 exports.loadCommand = loadCommand;
