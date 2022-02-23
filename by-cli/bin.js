@@ -10,6 +10,7 @@ const booststrap = () => {
         .helpOption('-h, --help', 'Output usage information.');
 
     loadCommand(program);
+    console.log('cwd--', process.cwd());
     program.parse();
 };
 booststrap();
